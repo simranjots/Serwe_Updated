@@ -6,12 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.serwe.Common.Common;
+import com.example.serwe.Model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,16 +49,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        button3.setOnClickListener(v -> signIn());
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
 
-        btnSignUp.setOnClickListener(v -> {
-            Intent signUp = new Intent(MainActivity.this, SignUp.class);
-            startActivity(signUp);
+            }
         });
 
-        btnSignIn.setOnClickListener(v -> {
-            Intent signIn = new Intent(MainActivity.this, SignIn.class);
-            startActivity(signIn);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signUp = new Intent(MainActivity.this, SignUp.class);
+                startActivity(signUp);
+            }
+        });
+
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signIn = new Intent(MainActivity.this, SignIn.class);
+                startActivity(signIn);
+            }
         });
 
     }
@@ -70,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
             String name = account.getDisplayName();
             String email = account.getEmail();
             String img_url = account.getPhotoUrl().toString();
+            User user = new User();
+            user.setName(account.getDisplayName());
+            Intent homeIntent= new Intent(MainActivity.this,Home.class);
+            Common.currentUser=user;
+            startActivity(homeIntent);
+            //finish();
             Toast.makeText(this, "Welcome,"+ name, Toast.LENGTH_SHORT).show();
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
