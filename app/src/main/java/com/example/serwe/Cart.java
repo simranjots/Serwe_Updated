@@ -75,12 +75,7 @@ public class Cart extends AppCompatActivity {
      * Clicking Place Order button
      */
     private void placeOrder() {
-        btnPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAlertDialog();
-            }
-        });
+        btnPlace.setOnClickListener(view -> showAlertDialog());
     }
 
     /**

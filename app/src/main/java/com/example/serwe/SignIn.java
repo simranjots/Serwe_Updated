@@ -38,48 +38,45 @@ public class SignIn extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user= database.getReference("User");
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnLogin.setOnClickListener(v -> {
 
-                final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
-                mDialog.setMessage("Please Wait");
-                mDialog.show();
-                    table_user.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+            final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
+            mDialog.setMessage("Please Wait");
+            mDialog.show();
+                table_user.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-                            //Chech if user exist
-                            if (dataSnapshot.child(edtPhone.getText().toString()).exists()) {
+                        //Chech if user exist
+                        if (dataSnapshot.child(edtPhone.getText().toString()).exists()) {
 
-                                //Get User Info
-                                mDialog.dismiss();
-                                User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
-                                user.setPhone(edtPhone.getText().toString());//set phone
-                                if (user.getPassword().equals(edtPassword.getText().toString())) {
+                            //Get User Info
+                            mDialog.dismiss();
+                            User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
+                            user.setPhone(edtPhone.getText().toString());//set phone
+                            if (user.getPassword().equals(edtPassword.getText().toString())) {
 
-                                    Intent homeIntent= new Intent(SignIn.this,Home.class);
-                                    Common.currentUser=user;
-                                    startActivity(homeIntent);
-                                    finish();
+                                Intent homeIntent= new Intent(SignIn.this,Home.class);
+                                Common.currentUser=user;
+                                startActivity(homeIntent);
+                                finish();
 
-                                }
-                                else{
-                                    Toast.makeText(SignIn.this, "Sign In Failed!", Toast.LENGTH_SHORT).show();
-                                }
                             }
-                            else {
-                                mDialog.dismiss();
-                                Toast.makeText(SignIn.this, "User Does not exist! ", Toast.LENGTH_SHORT).show();
+                            else{
+                                Toast.makeText(SignIn.this, "Sign In Failed!", Toast.LENGTH_SHORT).show();
                             }
                         }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
+                        else {
+                            mDialog.dismiss();
+                            Toast.makeText(SignIn.this, "User Does not exist! ", Toast.LENGTH_SHORT).show();
                         }
-                    });
-            }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
         });
     }
 }

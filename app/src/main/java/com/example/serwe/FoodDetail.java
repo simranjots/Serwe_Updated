@@ -56,20 +56,17 @@ public class FoodDetail extends AppCompatActivity {
         numberButton = (ElegantNumberButton) findViewById(R.id.number_button);
         btnCart = (FloatingActionButton) findViewById(R.id.btnCart);
 
-        btnCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new Database(getBaseContext()).addToCart(new Order(
-                        foodId,
-                        currentFood.getName(),
-                        numberButton.getNumber(),
-                        currentFood.getPrice(),
-                        currentFood.getDiscount()
+        btnCart.setOnClickListener(view -> {
+            new Database(getBaseContext()).addToCart(new Order(
+                    foodId,
+                    currentFood.getName(),
+                    numberButton.getNumber(),
+                    currentFood.getPrice(),
+                    currentFood.getDiscount()
 
-                ));
+            ));
 
-                Toast.makeText(FoodDetail.this, "Added to Cart", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(FoodDetail.this, "Added to Cart", Toast.LENGTH_SHORT).show();
         });
 
         food_description = (TextView) findViewById(R.id.food_description);

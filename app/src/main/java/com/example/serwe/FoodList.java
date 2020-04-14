@@ -4,13 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
-import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.serwe.Interface.ItemClickListener;
 import com.example.serwe.Model.Food;
 import com.example.serwe.ViewHolder.FoodViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -47,27 +45,27 @@ public class FoodList extends AppCompatActivity {
         //get intent
         if(getIntent() != null)
             categoryId = getIntent().getStringExtra("CategoryId");
+
         if(!categoryId.isEmpty() && categoryId != null){
+            Toast.makeText(this,categoryId,Toast.LENGTH_SHORT).show();
             loadListFood(categoryId);
         }
 
     }
 
     private void loadListFood(String categoryId) {
-        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,R.layout.food_item,FoodViewHolder.class,foodList.orderByChild("MenuId").equalTo(categoryId)) {
+        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,R.layout.food_item,FoodViewHolder.class,foodList.orderByChild("menuId").equalTo(categoryId)) {
             @Override
             protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
                 viewHolder.food_name.setText(model.getName());
                 Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.food_image);
+
                 final  Food local = model;
-                viewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        //Start new activity
-                        Intent foodDetail = new Intent(FoodList.this,FoodDetail.class);
-                        foodDetail.putExtra("FoodId",adapter.getRef(position).getKey());//send food id to next activity
-                        startActivity(foodDetail);
-                    }
+                viewHolder.setItemClickListener((view, position1, isLongClick) -> {
+                    //Start new activity
+                    Intent foodDetail = new Intent(FoodList.this,FoodDetail.class);
+                    foodDetail.putExtra("FoodId",adapter.getRef(position1).getKey());//send food id to next activity
+                    startActivity(foodDetail);
                 });
             }
         };

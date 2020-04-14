@@ -25,6 +25,10 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         itemView.setOnClickListener(this);
     }
 
+    public void setItemClickListener(ItemClickListener categoryId) {
+        this.itemClickListener = categoryId;
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -33,7 +37,5 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     }
 
-    public void setItemClickListener(ItemClickListener categoryId) {
-        this.itemClickListener = itemClickListener;
-    }
+
 }

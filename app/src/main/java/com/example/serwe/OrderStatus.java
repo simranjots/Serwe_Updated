@@ -70,12 +70,7 @@ public class OrderStatus extends AppCompatActivity {
                 viewHolder.txtOrderStatus.setText(convertCodeToStatus(model.getStatus()));
                 viewHolder.txtOrAddress.setText(model.getAddress());
                 viewHolder.txtOrderPhone.setText(model.getPhone());
-                viewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(OrderStatus.this, "" + position, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                viewHolder.setItemClickListener((view, position1, isLongClick) -> Toast.makeText(OrderStatus.this, "" + position1, Toast.LENGTH_SHORT).show());
             }
         };
         // set adapter for recycler view

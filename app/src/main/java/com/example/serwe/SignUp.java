@@ -37,39 +37,36 @@ public class SignUp extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user= database.getReference("User");
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final ProgressDialog mDialog = new ProgressDialog(SignUp.this);
-                mDialog.setMessage("Please Wait");
-                mDialog.show();
+        btnSignUp.setOnClickListener(v -> {
+            final ProgressDialog mDialog = new ProgressDialog(SignUp.this);
+            mDialog.setMessage("Please Wait");
+            mDialog.show();
 
-                table_user.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //check if already user phone
-                        if(dataSnapshot.child(edtPhone.getText().toString()).exists()){
-                            mDialog.dismiss();
-                            Toast.makeText(SignUp.this, "Phone number already registered", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            mDialog.dismiss();
-                            User user = new User(edtName.getText().toString(),edtPassword.getText().toString());
-                            table_user.child(edtPhone.getText().toString()).setValue(user);
-                            Toast.makeText(SignUp.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
-                            finish();
-
-
-                        }
+            table_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    //check if already user phone
+                    if(dataSnapshot.child(edtPhone.getText().toString()).exists()){
+                        mDialog.dismiss();
+                        Toast.makeText(SignUp.this, "Phone number already registered", Toast.LENGTH_SHORT).show();
                     }
+                    else{
+                        mDialog.dismiss();
+                        User user = new User(edtName.getText().toString(),edtPassword.getText().toString());
+                        table_user.child(edtPhone.getText().toString()).setValue(user);
+                        Toast.makeText(SignUp.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                        finish();
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
 
                     }
-                });
+                }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
         });
     }
 }

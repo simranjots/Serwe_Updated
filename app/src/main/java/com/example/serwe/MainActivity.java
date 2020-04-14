@@ -6,16 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,28 +42,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
+        button3.setOnClickListener(v -> signIn());
 
-            }
+        btnSignUp.setOnClickListener(v -> {
+            Intent signUp = new Intent(MainActivity.this, SignUp.class);
+            startActivity(signUp);
         });
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signUp = new Intent(MainActivity.this, SignUp.class);
-                startActivity(signUp);
-            }
-        });
-
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signIn = new Intent(MainActivity.this, SignIn.class);
-                startActivity(signIn);
-            }
+        btnSignIn.setOnClickListener(v -> {
+            Intent signIn = new Intent(MainActivity.this, SignIn.class);
+            startActivity(signIn);
         });
 
     }
