@@ -22,6 +22,11 @@
 
             android:title="Orders" />
         <item
+        android:id="@+id/nav_tables"
+        android:icon="@drawable/ic_attach_money_black_24dp"
+
+        android:title="Book Tables" />
+        <item
             android:id="@+id/log_out"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
 

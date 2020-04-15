@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.serwe.Common.Common;
-import com.example.serwe.Interface.ItemClickListener;
 import com.example.serwe.Model.Category;
 
 import com.example.serwe.ViewHolder.MenuViewHolder;
@@ -150,7 +149,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             Intent orderIntent = new Intent(Home.this,OrderStatus.class);
             startActivity(orderIntent);
 
-        } else if (id == R.id.log_out) {
+        } else if (id == R.id.nav_tables) {
+            Intent TablesIntent = new Intent(Home.this, BookTableActivity.class);
+            startActivity(TablesIntent);
+
+        }else if (id == R.id.log_out) {
             Intent signIn = new Intent(Home.this,SignIn.class);
             signIn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(signIn);

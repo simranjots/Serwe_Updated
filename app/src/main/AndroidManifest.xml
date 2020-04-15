@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".TempActivity"></activity>
+        <activity android:name=".BookTable"></activity>
+        <activity android:name=".BookTableActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +31,7 @@
         <activity android:name=".FoodList" />
         <activity android:name=".FoodDetail" />
         <activity android:name=".Cart" />
-        <activity android:name=".OrderStatus"></activity>
+        <activity android:name=".OrderStatus" />
     </application>
 
 </manifest>
