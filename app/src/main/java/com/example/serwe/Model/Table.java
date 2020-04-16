@@ -2,9 +2,9 @@ package com.example.serwe.Model;
 
 public class Table {
     public String menuId ;
-    public String noTable ;
+    public int noTable ;
 
-    public Table(String menuId, String  noTable) {
+    public Table(String menuId, int  noTable) {
         this.menuId = menuId;
         this.noTable = noTable;
     }
@@ -20,11 +20,11 @@ public class Table {
         this.menuId = menuId;
     }
 
-    public String getNoTable() {
+    public int getNoTable() {
         return noTable;
     }
 
-    public void setNoTable(String noTable) {
+    public void setNoTable(int noTable) {
         this.noTable = noTable;
     }
 }

@@ -14,14 +14,14 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#009688"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/booktblbtn"
         app:layout_constraintEnd_toStartOf="@+id/tablevalue"
         app:layout_constraintHorizontal_bias="0.67"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/booktblbtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Book Table"
@@ -39,7 +39,7 @@
         android:textColor="#2B732E"
         android:textSize="18sp"
         android:hint="No of tables"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/booktblbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/no.oftables"

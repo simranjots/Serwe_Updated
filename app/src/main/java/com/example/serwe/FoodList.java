@@ -47,7 +47,6 @@ public class FoodList extends AppCompatActivity {
             categoryId = getIntent().getStringExtra("CategoryId");
 
         if(!categoryId.isEmpty() && categoryId != null){
-            Toast.makeText(this,categoryId,Toast.LENGTH_SHORT).show();
             loadListFood(categoryId);
         }
 
